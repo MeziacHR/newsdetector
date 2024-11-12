@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        h1 { text-align: center; }
+        .container { display: flex; flex-direction: column; align-items: center; }
+        textarea { width: 100%; height: 100px; margin-top: 20px; padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; margin-top: 10px; }
+        .result { margin-top: 20px; }
+        .result h2 { color: #333; }
+        .result p { color: #666; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>News Detector</h1>
+    <form method="POST">
+        <div class="container">
+            <label for="news_text">Enter a news paragraph to analyze:</label>
+            <textarea id="news_text" name="news_text" placeholder="Paste the news content here..." required></textarea>
+            <button type="submit">Analyze</button>
+        </div>
+    </form>
+
+    {% if prediction is not none %}
+    <div class="result">
+        <h2>Result: {{ "Fake News" if prediction == 1 else "Real News" }}</h2>
+        <p>{{ explanation }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
